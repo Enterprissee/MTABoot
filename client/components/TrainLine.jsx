@@ -1,19 +1,34 @@
 import React from 'react';
+import Details from './Details.jsx';
 
 export default class TrainLine extends React.Component {
   constructor(props) {
     super(props);
-    this.redirect = this.redirect.bind(this);
+    this.state = {
+      route_id: ''
+    }
+    this.redirect = this.redirect.bind(this)
+  }
+
+  redirect () {
+    // maybe not
+    // this.props.setAppState('display')
+    // what if, instead of changing the displayed state
+    // you changed the state of what is being mapped over in app
+    // that way, you'd retain all the same styling
+    this.props.setAppState(this.props.info)
   }
 
   render() {
     return (
-      <div className="trainline-row">
-        <div className="line">
-          {this.props.line.route_id}
+      <div className="trainline_row">
+        <div className="trainline_routes">
+          {this.props.line.name || this.props.line.route_id}
         </div>
-        <div className="status">
+        <div className="trainline_status">
           {this.props.line.status}
+        </div>
+        <div className="trainline_user">
         </div>
         <button onClick={this.redirect}>
           Details
